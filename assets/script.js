@@ -1,5 +1,6 @@
 //Identify the button
 var button = document.querySelector("#button");
+var questionContainer = document.querySelector("#questionscontainer");
 
 var questions = [
   {
@@ -27,14 +28,19 @@ var questions = [
 var index = 0;
 var score = 0;
 
-function startQuiz() {
-  // start a timer
-  var questionSect = document.getElementById("question1");
-  questionSect.style.display = "block";
-  var startingPage = document.getElementById("startPage");
-  startingPage.style.display = "none";
+function choiceClick(event){
+    //TODO make sure I actually clicked on a button
+    var clicked = event.target.innerText;
+    var answer = questions[index].answer;
+    if (answer === clicked) {
+        score++;
+    }
+    index++;
+    loadQuestion();
+}
 
-  var question = questions[0];
+function loadQuestion(){
+    var question = questions[index];
   // console.log(questions[0].choices)
 
   var questionTitleEl = document.getElementById("questionTitle");
@@ -47,25 +53,36 @@ function startQuiz() {
   ndChoice.textContent = question.choices[1];
 
   var rdChoice = document.getElementById("3rdChoice");
-  rdChoice.textContent = question.answer;
+  rdChoice.textContent = question.choices[2];
 
   var thChoice = document.getElementById("4thChoice");
-  thChoice.textContent = question.choices[2];
+  thChoice.textContent = question.choices[3];
 
-  var nextQuestionEl = document.getElementById("3rdChoice");
-  nextQuestionEl.addEventListener("click", nextQuestion);
+  /* var nextQuestionEl = document.getElementById("3rdChoice");
+  nextQuestionEl.addEventListener("click", nextQuestion); */
+}
 
-  function nextQuestion() {
+function startQuiz() {
+  // start a timer
+  var questionSect = document.getElementById("question1");
+  questionSect.style.display = "block";
+  var startingPage = document.getElementById("startPage");
+  startingPage.style.display = "none";
+    loadQuestion();
+  
+
+/* function nextQuestion() {
     var questionSect = document.getElementById("question1");
     questionSect.style.display = "none";
     var startingPage = document.getElementById("question2");
     startingPage.style.display = "block";
     var questionTitleEl = document.getElementById("questionTitle");
     questionTitleEl.textContent = question2nd.questionTitle;
-  }
+  } */
 }
 
 button.addEventListener("click", startQuiz);
+questionContainer.addEventListener("click", choiceClick);
 
 /* 
 
