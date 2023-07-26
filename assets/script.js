@@ -41,16 +41,17 @@ rdChoice.textContent = question1st.answer;
 var thChoice = document.getElementById("4thChoice")
 thChoice.textContent = question1st.choices[2];
 
-var nextQuestionEl = document.querySelector("3rdChoice")
+var nextQuestionEl = document.getElementById("3rdChoice")
 nextQuestionEl.addEventListener("click", nextQuestion);
 
-console.log(nextQuestionEl)
 
 function nextQuestion(){
     var questionSect = document.getElementById("question1")
-    questionSect.style.display = "block";
-    var startingPage = document.getElementById("startPage")
-    startingPage.style.display = "none";
+    questionSect.style.display = "none";
+    var startingPage = document.getElementById("question2")
+    startingPage.style.display = "block";
+    var questionTitleEl = document.getElementById("questionTitle");
+    questionTitleEl.textContent = question1st[1].question
 }
 
 
