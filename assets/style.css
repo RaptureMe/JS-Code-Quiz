@@ -2,3 +2,33 @@
     display: none;
 }
 
+#question2{
+    display: none;
+}
+
+#questionscontainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+    margin: 1rem auto;
+    
+}
+
+#scoretimer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#scoretimer p {
+    margin: 1rem 1rem;
+}
+
+div button {
+    margin: .5rem 0%;
+    padding: .7rem;
+}
+
+
+
+

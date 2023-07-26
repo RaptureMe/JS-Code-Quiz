@@ -2,27 +2,23 @@
 var button = document.querySelector("#button");
 
 
-
 var questions = [{
-    question: "TestQuestion1",
-    answer: "TestAnswer1",
-    choices: ["TestChoices1","TestChoices2","TestChoices3","TestAnswer1"]
+    question: "What is JavaScript?",
+    answer: "Its a computer language for website function",
+    choices: ["Its how you style websites.","Its a place to get coffee.","Its a computer language designed for graphic designers.","Its a computer language for website function"]
 },{
     question: "TestQuestion2",
-    answer: "ndTestAnswer2",
-    choices: ["ndTestChoices1","ndTestChoices2","ndTestChoices3","ndTestAnswer1"]
+    answer: "ndTestAnswer",
+    choices: ["ndTestChoices","ndTestChoices","ndTestChoices","ndTestAnswer"]
 }]
 
 var index = 0
 
 
-
-
-
 function startQuiz(){
 // start a timer
-var questionSec = document.getElementById("question1")
-questionSec.style.display = "block";
+var questionSect = document.getElementById("question1")
+questionSect.style.display = "block";
 var startingPage = document.getElementById("startPage")
 startingPage.style.display = "none";
 
@@ -40,7 +36,22 @@ var ndChoice = document.getElementById("2ndChoice")
 ndChoice.textContent = question1st.choices[1];
 
 var rdChoice = document.getElementById("3rdChoice")
-rdChoice.textContent = question1st.choices[2];
+rdChoice.textContent = question1st.answer;
+
+var thChoice = document.getElementById("4thChoice")
+thChoice.textContent = question1st.choices[2];
+
+var nextQuestionEl = document.querySelector("3rdChoice")
+nextQuestionEl.addEventListener("click", nextQuestion);
+
+console.log(nextQuestionEl)
+
+function nextQuestion(){
+    var questionSect = document.getElementById("question1")
+    questionSect.style.display = "block";
+    var startingPage = document.getElementById("startPage")
+    startingPage.style.display = "none";
+}
 
 
 }
