@@ -1,67 +1,71 @@
 //Identify the button
 var button = document.querySelector("#button");
 
-
-var questions = [{
-    question: "What is JavaScript?",
+var questions = [
+  {
+    questionTitle: "What is JavaScript?",
     answer: "Its a computer language for website function",
-    choices: ["Its how you style websites.","Its a place to get coffee.","Its a computer language designed for graphic designers.","Its a computer language for website function"]
-},{
-    question: "TestQuestion2",
+    choices: [
+      "Its how you style websites.",
+      "Its a place to get coffee.",
+      "Its a computer language designed for graphic designers.",
+      "Its a computer language for website function",
+    ],
+  },
+  {
+    questionTitle: "TestQuestion2",
     answer: "ndTestAnswer",
-    choices: ["ndTestChoices","ndTestChoices","ndTestChoices","ndTestAnswer"]
-}]
+    choices: [
+      "ndTestChoices",
+      "ndTestChoices",
+      "ndTestChoices",
+      "ndTestAnswer",
+    ],
+  },
+];
 
-var index = 0
+var index = 0;
+var score = 0;
 
+function startQuiz() {
+  // start a timer
+  var questionSect = document.getElementById("question1");
+  questionSect.style.display = "block";
+  var startingPage = document.getElementById("startPage");
+  startingPage.style.display = "none";
 
-function startQuiz(){
-// start a timer
-var questionSect = document.getElementById("question1")
-questionSect.style.display = "block";
-var startingPage = document.getElementById("startPage")
-startingPage.style.display = "none";
+  var question = questions[0];
+  // console.log(questions[0].choices)
 
-var question1st = questions[0]
-var question2nd = questions[1] 
-// console.log(questions[0].choices)
+  var questionTitleEl = document.getElementById("questionTitle");
+  questionTitleEl.textContent = question.questionTitle;
+  // select Li's
+  var stChoice = document.getElementById("1stChoice");
+  stChoice.textContent = question.choices[0];
 
-var questionTitleEl = document.getElementById("questionTitle");
-questionTitleEl.textContent = question1st.question
-// select Li's
-var stChoice = document.getElementById("1stChoice")
-stChoice.textContent = question1st.choices[0];
+  var ndChoice = document.getElementById("2ndChoice");
+  ndChoice.textContent = question.choices[1];
 
-var ndChoice = document.getElementById("2ndChoice")
-ndChoice.textContent = question1st.choices[1];
+  var rdChoice = document.getElementById("3rdChoice");
+  rdChoice.textContent = question.answer;
 
-var rdChoice = document.getElementById("3rdChoice")
-rdChoice.textContent = question1st.answer;
+  var thChoice = document.getElementById("4thChoice");
+  thChoice.textContent = question.choices[2];
 
-var thChoice = document.getElementById("4thChoice")
-thChoice.textContent = question1st.choices[2];
+  var nextQuestionEl = document.getElementById("3rdChoice");
+  nextQuestionEl.addEventListener("click", nextQuestion);
 
-var nextQuestionEl = document.getElementById("3rdChoice")
-nextQuestionEl.addEventListener("click", nextQuestion);
-
-
-function nextQuestion(){
-    var questionSect = document.getElementById("question1")
+  function nextQuestion() {
+    var questionSect = document.getElementById("question1");
     questionSect.style.display = "none";
-    var startingPage = document.getElementById("question2")
+    var startingPage = document.getElementById("question2");
     startingPage.style.display = "block";
     var questionTitleEl = document.getElementById("questionTitle");
-    questionTitleEl.textContent = question1st[1].question
-}
-
-
+    questionTitleEl.textContent = question2nd.questionTitle;
+  }
 }
 
 button.addEventListener("click", startQuiz);
-
-
-
-
 
 /* 
 
