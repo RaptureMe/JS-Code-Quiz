@@ -2,6 +2,10 @@
 var button = document.querySelector("#button");
 var questionContainer = document.querySelector("#questionscontainer");
 
+var index = 0;
+var score = 0;
+
+
 var questions = [
   {
     questionTitle: "What is JavaScript?",
@@ -23,20 +27,48 @@ var questions = [
       "ndTestAnswer",
     ],
   },
+  {
+    questionTitle: "TestQuestion3",
+    answer: "rdTestAnswer",
+    choices: [
+      "rdTestChoices",
+      "rdTestChoices",
+      "rdTestChoices",
+      "rdTestAnswer",
+    ],
+  },
+  {
+    questionTitle: "TestQuestion4",
+    answer: "thTestAnswer",
+    choices: [
+      "thTestChoices",
+      "thTestChoices",
+      "thTestChoices",
+      "thTestAnswer",
+    ],
+  },
 ];
-
-var index = 0;
-var score = 0;
 
 function choiceClick(event){
     //TODO make sure I actually clicked on a button
+    if (index === 4) {
+        return;
+    }
     var clicked = event.target.innerText;
+    console.log('clicked: ', clicked)
     var answer = questions[index].answer;
     if (answer === clicked) {
         score++;
+        index++;
+        window.alert("Correct!")
+        loadQuestion();
+    } else if(answer !== clicked && event.target.matches('button')) {
+        console.log('bad answer');
+        index++;
+        loadQuestion();
     }
-    index++;
-    loadQuestion();
+    // index++;
+    // loadQuestion();
 }
 
 function loadQuestion(){

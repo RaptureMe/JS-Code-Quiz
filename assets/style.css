@@ -29,6 +29,10 @@ div button {
     padding: .7rem;
 }
 
+#scoreBoard {
+    display:none;
+}
+
 
 
 
