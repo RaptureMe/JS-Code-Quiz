@@ -33,6 +33,12 @@ div button {
     display:none;
     padding: 2rem;
     justify-content: center;
+    flex-direction: column;
+
+}
+
+.align {
+    margin: 1rem auto;
 }
 
 
