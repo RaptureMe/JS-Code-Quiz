@@ -31,6 +31,8 @@ div button {
 
 #scoreBoard {
     display:none;
+    padding: 2rem;
+    justify-content: center;
 }
 
 

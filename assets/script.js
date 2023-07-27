@@ -1,9 +1,12 @@
 //Identify the button
 var button = document.querySelector("#button");
 var questionContainer = document.querySelector("#questionscontainer");
-
+var scoreBoard = document.querySelector("#scoreBoard");
+var initialEl = document.querySelector("#intiails")
+var submit = document.querySelector("#submit")
 var index = 0;
 var score = 0;
+
 
 
 var questions = [
@@ -47,11 +50,29 @@ var questions = [
       "thTestAnswer",
     ],
   },
-];
+]; 
+
+var time = questions.length*15;
+
+function saveHighScore(){
+    var initials = initialEl.value.trim();
+    var newScore = {
+        score: time,
+        initials: initials
+    }
+    var highscores = JSON.parse(localStorage.getItem("highscores") || [])
+    highscores.push(newScore)
+    localStorage.setItem("HighScores", JSON.stringify(highscores))
+}
 
 function choiceClick(event){
     //TODO make sure I actually clicked on a button
-    if (index === 4) {
+    //need to work on this function to stop quiz at the last question
+    //maybe when it gets to 4 do the styling to display none?
+    if (index === 3) {
+        questionContainer.style.display = "none";
+        scoreBoard.style.display = "flex";
+        console.log(score)
         return;
     }
     var clicked = event.target.innerText;
@@ -60,6 +81,7 @@ function choiceClick(event){
     if (answer === clicked) {
         score++;
         index++;
+        // I kinda like this feature, makes pop up alert on correct answer
         window.alert("Correct!")
         loadQuestion();
     } else if(answer !== clicked && event.target.matches('button')) {
@@ -101,8 +123,6 @@ function startQuiz() {
   var startingPage = document.getElementById("startPage");
   startingPage.style.display = "none";
     loadQuestion();
-  
-
 /* function nextQuestion() {
     var questionSect = document.getElementById("question1");
     questionSect.style.display = "none";
@@ -115,10 +135,9 @@ function startQuiz() {
 
 button.addEventListener("click", startQuiz);
 questionContainer.addEventListener("click", choiceClick);
+submit.onclick = saveHighScore;
 
-/* 
-
-GIVEN I am taking a code quiz
+/* GIVEN I am taking a code quiz
 -WHEN I click the start button
 --THEN a timer starts and I am presented with a question
 WHEN I answer a question
