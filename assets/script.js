@@ -4,6 +4,7 @@ var questionContainer = document.querySelector("#questionscontainer");
 var scoreBoard = document.querySelector("#scoreBoard");
 var initialEl = document.querySelector("#intiails")
 var submit = document.querySelector("#submit")
+var yourScore = document.querySelector("#yourScore")
 var index = 0;
 var score = 0;
 
@@ -54,27 +55,28 @@ var questions = [
 
 var time = questions.length*15;
 
-function saveHighScore(){
+/* function saveHighScore(){
     var initials = initialEl.value.trim();
     var newScore = {
-        score: time,
+        score: time
         initials: initials
     }
     var highscores = JSON.parse(localStorage.getItem("highscores") || [])
     highscores.push(newScore)
     localStorage.setItem("HighScores", JSON.stringify(highscores))
-}
+} */
 
 function choiceClick(event){
     //TODO make sure I actually clicked on a button
     //need to work on this function to stop quiz at the last question
     //maybe when it gets to 4 do the styling to display none?
-    if (index === 3) {
+    /* if (index === questions.length) {
         questionContainer.style.display = "none";
         scoreBoard.style.display = "flex";
         console.log(score)
+        yourScore.textContent = score
         return;
-    }
+    } */
     var clicked = event.target.innerText;
     console.log('clicked: ', clicked)
     var answer = questions[index].answer;
@@ -89,11 +91,21 @@ function choiceClick(event){
         index++;
         loadQuestion();
     }
+    if (index === questions.length) {
+        questionContainer.style.display = "none";
+        scoreBoard.style.display = "flex";
+        console.log(score)
+        yourScore.textContent = score
+        return;
+    }
     // index++;
     // loadQuestion();
 }
 
 function loadQuestion(){
+    if (index === questions.length) {
+        return;
+    }
     var question = questions[index];
   // console.log(questions[0].choices)
 
@@ -135,7 +147,7 @@ function startQuiz() {
 
 button.addEventListener("click", startQuiz);
 questionContainer.addEventListener("click", choiceClick);
-submit.onclick = saveHighScore;
+// submit.onclick = saveHighScore;
 
 /* GIVEN I am taking a code quiz
 -WHEN I click the start button
